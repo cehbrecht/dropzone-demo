@@ -1,0 +1,7 @@
+name: dropzone
+channels:
+  - conda-forge
+dependencies:
+  - pip
+  - python
+  - flask
