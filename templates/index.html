@@ -12,16 +12,32 @@
     <form action="/upload" class="dropzone" id="my-dropzone"></form>
     
     <script>
-        Dropzone.options.myDropzone = {
+        // https://github.com/dropzone/dropzone/blob/main/src/options.js
+        Dropzone.options.myDropzone = { // camelized version of the `id`
+            paramName: "file", // The name that will be used to transfer the file
+            //uploadMultiple: false,
+            //chunking: true,
+            //forceChunking: true,
+            //chunkSize: 1024 * 1024, // bytes
+            //parallelChunkUploads: false,
+            //retryChunks: true,
+            //retryChunksLimit: 3,
+            defaultHeaders: false,
+            //binaryBody: true,
+            maxFilesize: 100, // MB
+            //maxFiles: 1,
+            acceptedFiles: ".txt,.nc,.zip",
             init: function() {
                 this.on("success", function(file, response) {
+                    console.log("A file has been uploaded");
                     console.log(response.message);
                 });
                 this.on("error", function(file, errorMessage) {
                     console.log(errorMessage);
                 });
-            }
+            },
         };
+        console.log("hello dropzone");
     </script>
 </body>
 </html>
