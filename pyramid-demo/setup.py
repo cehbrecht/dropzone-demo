@@ -10,6 +10,8 @@ setup(
     install_requires=[
         'pyramid',
         'waitress',
+        'pyramid_chameleon',
+        'pyramid_storage',
         # Add other dependencies here
     ],
     entry_points={
