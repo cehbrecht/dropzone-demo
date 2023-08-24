@@ -8,7 +8,8 @@ def upload_view(request):
 
 @view_config(route_name='upload_file', request_method='POST')
 def upload_file(request):
-    upload_dir = 'path/to/upload/directory'
+    print("uploading file ...")
+    upload_dir = '/tmp/uploads'
     if not os.path.exists(upload_dir):
         os.makedirs(upload_dir)
 

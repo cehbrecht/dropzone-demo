@@ -2,27 +2,40 @@
 <html>
 <head>
     <title>Dropzone.js Example</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@5.9.2/dist/min/dropzone.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
 </head>
 <body>
-    <h1>File Upload using Dropzone.js</h1>
-    <form id="my-dropzone" class="dropzone">
-        <div class="fallback">
-            <input name="file" type="file" multiple />
-        </div>
-    </form>
-    <script src="https://cdn.jsdelivr.net/npm/dropzone@5.9.2/dist/min/dropzone.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+
+    <form action="/upload_file" class="dropzone" id="my-dropzone"></form>
+    
     <script>
-        Dropzone.options.myDropzone = {
+        // https://github.com/dropzone/dropzone/blob/main/src/options.js
+        Dropzone.options.myDropzone = { // camelized version of the `id`
             paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 5, // MB
-            acceptedFiles: ".jpg, .jpeg, .png", // Allowed file types
-            init: function () {
-                this.on("success", function (file, response) {
-                    console.log("File uploaded successfully.", response);
+            //uploadMultiple: false,
+            //chunking: true,
+            //forceChunking: true,
+            //chunkSize: 1024 * 1024, // bytes
+            //parallelChunkUploads: false,
+            //retryChunks: true,
+            //retryChunksLimit: 3,
+            defaultHeaders: false,
+            //binaryBody: true,
+            maxFilesize: 100, // MB
+            //maxFiles: 1,
+            acceptedFiles: ".txt,.nc,.zip",
+            init: function() {
+                this.on("success", function(file, response) {
+                    console.log("A file has been uploaded");
+                    console.log(response.message);
                 });
-            }
+                this.on("error", function(file, errorMessage) {
+                    console.log(errorMessage);
+                });
+            },
         };
+        console.log("hello dropzone");
     </script>
 </body>
 </html>
